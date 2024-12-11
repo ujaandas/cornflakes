@@ -1,6 +1,10 @@
 { pkgs, ... }:
 
 {
+  imports = [
+    ../modules
+  ];
+
   home.username = "ooj";
   home.homeDirectory = "/Users/ooj";
 
@@ -21,8 +25,3 @@
 
   # User-specific dotfiles
   home.file.".gitconfig".text = ''
-    [user]
-      name = "ooj"
-      email = "ooj@example.com"
-  '';
-}

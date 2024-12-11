@@ -28,7 +28,7 @@
   nixpkgs.hostPlatform = "aarch64-darwin";
 
   users.users.ooj = {
-        name = "ooj";
-        home = "/Users/ooj";
-    };
+    name = "ooj";
+    home = "/Users/ooj";
+  };
 }

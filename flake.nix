@@ -16,10 +16,10 @@
   outputs = inputs@{ self, home-manager, nix-darwin, nixpkgs }: 
   {
     darwinConfigurations = {
-      macbook = nix-darwin.lib.darwinSystem {
+      ooj = nix-darwin.lib.darwinSystem {
         modules = [
           ./darwin/macbook.nix
-          ./shared/modules/shell.nix
+          # ./shared/modules
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -29,25 +29,5 @@
         ];
       };
     };
-  # let
-  #   # Import the external configuration
-  #   configurationPath = ./darwin/configuration.nix;
-  #   homeManagerConfigurationPath = ./home.nix;
-  # in
-  # {
-  #   darwinConfigurations."ooj" = nix-darwin.lib.darwinSystem {
-  #     # Include both nix-darwin and home-manager modules
-  #     modules = [
-  #       configurationPath
-  #       # homeManagerConfigurationPath
-  #       home-manager.darwinModules.home-manager
-  #       {
-  #           home-manager.useGlobalPkgs = true;
-  #           home-manager.useUserPackages = true;
-  #           home-manager.users.ooj = import homeManagerConfigurationPath;
-  #       }
-  #     ];
-  #   };
-  # };
   };
 }
