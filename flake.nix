@@ -19,12 +19,11 @@
       ooj = nix-darwin.lib.darwinSystem {
         modules = [
           ./darwin/macbook.nix
-          # ./shared/modules
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.ooj = import ./home.nix;
+            home-manager.users.ooj = import ./home;
           }
         ];
       };
