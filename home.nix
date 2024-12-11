@@ -5,7 +5,7 @@
 
   # Import the user-specific configuration from home/ooj.nix
   imports = [
-    ./home/users/ooj.nix
+    ./home/users/ooj
   ];
 
   # Additional configurations can go here
