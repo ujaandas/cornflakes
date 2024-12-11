@@ -18,7 +18,7 @@
     darwinConfigurations = {
       ooj = nix-darwin.lib.darwinSystem {
         modules = [
-          ./darwin/macbook.nix
+          ./devices/darwin/macbook.nix
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

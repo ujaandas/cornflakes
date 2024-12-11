@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./modules
+    ./editor.nix
   ];
 
   home.username = "ooj";
