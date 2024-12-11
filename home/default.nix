@@ -5,8 +5,8 @@
 
   # Import the user-specific configuration from home/ooj.nix
   imports = [
-    ./home/shared-modules
-    ./home/users/ooj
+    ./shared-modules
+    ./users/ooj
   ];
 
   # Additional configurations can go here
