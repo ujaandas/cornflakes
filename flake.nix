@@ -17,7 +17,7 @@
   let
     # Import the external configuration
     configurationPath = ./darwin/configuration.nix;
-    homeManagerConfigurationPath = ./darwin/home.nix;
+    homeManagerConfigurationPath = ./home.nix;
   in
   {
     darwinConfigurations."ooj" = nix-darwin.lib.darwinSystem {
@@ -30,16 +30,8 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.ooj = import ./darwin/home.nix;
-
-            # Optionally, use home-manager.extraSpecialArgs to pass
-            # arguments to home.nix
         }
       ];
-
-      # # Pass Home Manager-specific options
-      # specialArgs = {
-      #   inherit (home-manager) lib;
-      # };
     };
   };
 }
