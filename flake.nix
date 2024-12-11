@@ -24,14 +24,22 @@
       # Include both nix-darwin and home-manager modules
       modules = [
         configurationPath
-        homeManagerConfigurationPath
-        home-manager.nixosModules.home-manager
+        # homeManagerConfigurationPath
+        home-manager.darwinModules.home-manager
+        {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.ooj = import ./darwin/home.nix;
+
+            # Optionally, use home-manager.extraSpecialArgs to pass
+            # arguments to home.nix
+        }
       ];
 
-      # Pass Home Manager-specific options
-      specialArgs = {
-        inherit (home-manager) lib;
-      };
+      # # Pass Home Manager-specific options
+      # specialArgs = {
+      #   inherit (home-manager) lib;
+      # };
     };
   };
 }
