@@ -18,15 +18,12 @@
     darwinConfigurations = {
       ooj = let 
         username = "ooj";
-        system = "aarch64-darwin";
-        pkgs = inputs.nixpkgs.packages.${system};
-        specialArgs = { inherit username pkgs system; };
+        specialArgs = { inherit username; };
       in
       nix-darwin.lib.darwinSystem {
         inherit specialArgs;
-
         modules = [
-          ./devices/darwin/macbook.nix
+          ./devices/macbook
           ./users/${username}/config.nix
           home-manager.darwinModules.home-manager
           {
@@ -34,10 +31,7 @@
             home-manager.useUserPackages = true;
 
             home-manager.extraSpecialArgs = inputs // specialArgs;
-            # home-manager.users.${username} = import ./users/${username}/home.nix // import ./home;
-            home-manager.users.${username} = import ./home/default.nix {
-              inherit pkgs username system;
-            };
+            home-manager.users.${username} = import ./home/default.nix;
           }
         ];
       };
