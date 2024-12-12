@@ -23,8 +23,8 @@
       nix-darwin.lib.darwinSystem {
         inherit specialArgs;
         modules = [
-          ./devices/macbook
-          ./users/${username}
+          ./devices/macbook/config.nix
+          ./users/${username}/config.nix
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
