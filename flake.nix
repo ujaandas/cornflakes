@@ -16,14 +16,22 @@
   outputs = inputs@{ self, home-manager, nix-darwin, nixpkgs }: 
   {
     darwinConfigurations = {
-      ooj = nix-darwin.lib.darwinSystem {
+      ooj = let 
+        username = "ooj";
+        specialArgs = { inherit username; };
+      in
+      nix-darwin.lib.darwinSystem {
+        inherit specialArgs;
+
         modules = [
           ./devices/darwin/macbook.nix
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.ooj = import ./home;
+
+            home-manager.extraSpecialArgs = inputs // specialArgs;
+            home-manager.users.${username} = import ./users/${username};
           }
         ];
       };
