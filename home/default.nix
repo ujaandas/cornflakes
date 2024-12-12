@@ -5,7 +5,7 @@
   imports = [ 
     import ./shared.nix
     import ../users/ooj/home.nix
-    import ../devices/macbook/home.nix
+    # import ../devices/macbook/home.nix
   ];
 
   programs.home-manager.enable = true;

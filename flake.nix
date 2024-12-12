@@ -24,7 +24,7 @@
         inherit specialArgs;
         modules = [
           ./devices/macbook
-          ./users/${username}/config.nix
+          ./users/${username}
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
