@@ -1,9 +1,8 @@
-{ pkgs, ... }:
-
+{username, ...}: 
 {
-  home.packages = with pkgs; [ git vim htop ];
-  home.sessionVariables = {
-    EDITOR = "vim";
-    PATH = "${pkgs.coreutils}/bin:${pkgs.findutils}/bin:${pkgs.gnugrep}/bin";
+  home = {
+    stateVersion = "23.05";
   };
+
+  programs.home-manager.enable = true;
 }

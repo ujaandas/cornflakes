@@ -32,9 +32,7 @@
             home-manager.useUserPackages = true;
 
             home-manager.extraSpecialArgs = inputs // specialArgs;
-            home-manager.users.${username} = import ./home/default.nix {
-              inherit username pkgs;
-            };
+            home-manager.users.${username} = import ./users/${username}/home.nix;
           }
         ];
       };

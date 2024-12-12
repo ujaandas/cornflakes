@@ -1,6 +1,10 @@
 {pkgs, ...}: 
 
 {
+  imports = [
+    ../../home/shared.nix
+  ];
+  
   programs.git = {
     enable = true;
     userName = "Ujaan Das";
