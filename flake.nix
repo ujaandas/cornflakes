@@ -18,6 +18,7 @@
     darwinConfigurations = {
       ooj = let 
         username = "ooj";
+        pkgs = nixpkgs;
         specialArgs = { inherit username; };
       in
       nix-darwin.lib.darwinSystem {
@@ -31,7 +32,9 @@
             home-manager.useUserPackages = true;
 
             home-manager.extraSpecialArgs = inputs // specialArgs;
-            home-manager.users.${username} = import ./home/default.nix;
+            home-manager.users.${username} = import ./home/default.nix {
+              inherit username pkgs;
+            };
           }
         ];
       };
