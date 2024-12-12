@@ -1,26 +1,12 @@
 { config, pkgs, ... }:
 
+let
+  shared = import ./shared.nix { inherit pkgs; };
+  user = import ../users/ooj.nix { inherit pkgs; };
+in
 {
-  home.stateVersion = "23.05"; # Please read the comment before changing.
-
-  # Import the user-specific configuration from home/ooj.nix
-  imports = [
-    ./shared
-    ./users/ooj
-  ];
-
-  # Additional configurations can go here
-  home.packages = [
-    # Additional packages
-  ];
-
-  home.file = {
-    # Additional dotfiles
-  };
-
-  home.sessionVariables = {
-    # Additional session variables
-  };
+  home.stateVersion = "23.05";
+  imports = [ shared user device ];
 
   programs.home-manager.enable = true;
 }
