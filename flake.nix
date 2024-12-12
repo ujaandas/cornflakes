@@ -25,13 +25,14 @@
 
         modules = [
           ./devices/darwin/macbook.nix
+          ./users/${username}/config.nix
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
 
             home-manager.extraSpecialArgs = inputs // specialArgs;
-            home-manager.users.${username} = import ./users/${username};
+            home-manager.users.${username} = import ./users/${username}/home.nix;
           }
         ];
       };
