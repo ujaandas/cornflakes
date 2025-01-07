@@ -12,11 +12,12 @@
   };
   programs.zsh = {
     enable = true;
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
   };
   home.file = {
     ".zshrc".text = ''
-      export ZSH_THEME="powerlevel10k/powerlevel10k"
-      source ~/.zshrc
       # Conda initialization
       # >>> conda initialize >>>
       # !! Contents within this block are managed by 'conda init' !!
