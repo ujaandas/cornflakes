@@ -24,7 +24,7 @@
       nix-darwin.lib.darwinSystem {
         inherit specialArgs;
         modules = [
-          ./devices/macbook
+          ./devices/macbook.nix
           ./users/${username}
           home-manager.darwinModules.home-manager
           {
