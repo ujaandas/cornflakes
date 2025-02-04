@@ -20,9 +20,18 @@
         file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
       }
     ];
-    initExtra = "source ~/.p10k.zsh";
+    initExtra = ''
+      source ~/.p10k.zsh
+      eval "$(zoxide init zsh)"
+
+      # Override ls with exa
+      function ls {
+        exa --icons "$@"
+      }
+    '';
     shellAliases = {
       ll = "ls -l";
+      cd = "z";
       nixup = "nix run nix-darwin --extra-experimental-features nix-command --extra-experimental-features flakes -- switch --flake ~/.config/nix";
     };
     history.size = 10000;
