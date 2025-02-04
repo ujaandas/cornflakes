@@ -18,8 +18,9 @@
     darwinConfigurations = {
       ooj = let 
         username = "ooj";
+        homeDirectory = "/Users/ooj";
         pkgs = nixpkgs;
-        specialArgs = { inherit username; };
+        specialArgs = { inherit username homeDirectory; };
       in
       nix-darwin.lib.darwinSystem {
         inherit specialArgs;
