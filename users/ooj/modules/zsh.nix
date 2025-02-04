@@ -18,12 +18,8 @@
       src = pkgs.zsh-powerlevel10k;
       file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
     }
-    {
-      name = "powerlevel10k-config";
-      src = ./p10k;
-      file = "p10k.zsh";
-    }
   ];
+  initExtra = "source ~/.p10k.zsh";
   shellAliases = {
     ll = "ls -l";
     nixup = "nix run nix-darwin --extra-experimental-features nix-command --extra-experimental-features flakes -- switch --flake ~/.config/nix";

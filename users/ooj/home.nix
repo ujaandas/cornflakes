@@ -12,5 +12,5 @@
     userEmail = "ujaandas03@gmail.com";
   };
 
-  programs.zsh = import ./zsh { inherit pkgs; };
+  programs.zsh = import ./modules/zsh.nix { inherit pkgs; };
 }
