@@ -1,7 +1,20 @@
 { pkgs, ... }: 
 {
   environment.systemPackages = with pkgs; [
-    git
-    nil
+    # terminal
+    tree
+    curl
+    fd
+
+    # ssh
+    openssh
+    ssh-copy-id
+
+    # archive
+    xz
+    zstd
+
+    # media
+    ffmpeg
   ];
 }
