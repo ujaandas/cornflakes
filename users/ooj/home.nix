@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  imports = [ ../common.nix ./zsh/default.nix ];
+  imports = [ ../common.nix ];
 
   home.username = "ooj";
   home.homeDirectory = "/Users/ooj";
@@ -12,5 +12,5 @@
     userEmail = "ujaandas03@gmail.com";
   };
 
-  programs.zsh = import ./zsh/default.nix { inherit pkgs; };
+  programs.zsh = import ./zsh { inherit pkgs; };
 }
