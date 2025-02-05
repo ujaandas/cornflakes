@@ -28,6 +28,9 @@
       function ls {
         exa --icons "$@"
       }
+
+      # Use brew for GUI apps
+      eval "$(/opt/homebrew/bin/brew shellenv)"
     '';
     shellAliases = {
       ll = "ls -l";
