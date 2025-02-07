@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  imports = [ ../common.nix ./modules/zsh.nix ./modules/git.nix ];
+  imports = [ ../common.nix ./modules/zsh.nix ./modules/git.nix ./modules/tmux/tmux.nix ./modules/wezterm/wezterm.nix ];
 
   home.packages = with pkgs; [
     zoxide
