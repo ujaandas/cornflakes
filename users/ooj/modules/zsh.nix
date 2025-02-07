@@ -36,14 +36,6 @@
       # CLI tool overlays
       ll = "ls -l";
       cd = "z";
-      
-      # Nix shorthands
-      snowrun = "nix run nix-darwin --extra-experimental-features nix-command --extra-experimental-features flakes -- switch --flake ~/.config/nix";
-      snowhome = "home-manager switch --flake ~/.config/nix#$(whoami)";
-      snowup = "nix flake update --recreate-lock-file";
-      snowcl = "nix-collect-garbage -d";
-      snowli = "nix-env -q";
-      snowroll = "nix-env --rollback";
     };
     history.size = 10000;
   };
