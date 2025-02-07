@@ -1,6 +1,6 @@
-# Snowy ❄️
+# Snow ❄️
 
-This is my attempt at a clean, modular, and straightforward-enough (for me) Nix setup, making use of flakes, nix-darwin and home-manager.
+This is my attempt at a clean, modular, and straightforward-enough (for me) Nix setup (with a WIP non-Nix interface), making use of flakes, nix-darwin and home-manager.
 
 ## File Structure
 
