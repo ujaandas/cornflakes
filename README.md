@@ -1,4 +1,4 @@
-# Snow ❄️
+# Cornflakes 🌽
 
 This is my attempt at a clean, modular, and straightforward-enough (for me) Nix setup (with a WIP non-Nix interface), making use of flakes, nix-darwin and home-manager.
 
