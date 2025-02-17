@@ -1,4 +1,4 @@
-{ pkgs, ... }: 
+{ pkgs, ... }:
 {
   imports = [
     ./common.nix
@@ -17,14 +17,14 @@
   # Use homebrew ONLY to install GUI apps
   homebrew = {
     enable = true;
-    brews = []; # This should be EMPTY! All GUI apps are casks
+    brews = [ ]; # This should be EMPTY! All GUI apps are casks
     casks = [
       # "firefox"
       # "google-chrome"
       "wezterm"
       # "visual-studio-code"
     ];
-    taps = [];
+    taps = [ ];
     onActivation.cleanup = "zap";
   };
 
@@ -33,11 +33,16 @@
     activationScripts.postUserActivation.text = ''
       /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
     '';
-    
+
     # MacOS preferences
     defaults = {
+      # dock settings
       dock.autohide = true;
-      menuExtraClock.Show24Hour = true;
+      dock.enable-spring-load-actions-on-all-items = true;
+      # mouse settings
+      # ".GlobalPreferences"."com.apple.mouse.scaling" = -1;
+      # trackpad settings
+
     };
   };
 

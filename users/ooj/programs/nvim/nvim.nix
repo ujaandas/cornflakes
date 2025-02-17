@@ -20,28 +20,34 @@
 
       # lua file config
       {
-      	plugin = nvim-lspconfig;
+        plugin = nvim-lspconfig;
         type = "lua";
         config = builtins.readFile ./plugins/lsp.lua;
       }
       {
-      	plugin = nvim-cmp;
+        plugin = nvim-cmp;
         type = "lua";
         config = builtins.readFile ./plugins/cmp.lua;
       }
       {
-      	plugin = telescope-nvim;
+        plugin = telescope-nvim;
         type = "lua";
         config = builtins.readFile ./plugins/telescope.lua;
       }
       {
         plugin = (nvim-treesitter.withPlugins (p: [
-        p.tree-sitter-nix
-        p.tree-sitter-vim
-        p.tree-sitter-bash
-        p.tree-sitter-lua
-        p.tree-sitter-python
-        p.tree-sitter-json
+          p.tree-sitter-nix
+          p.tree-sitter-c
+          p.tree-sitter-cpp
+          p.tree-sitter-java
+          p.tree-sitter-javascript
+          p.tree-sitter-html
+          p.tree-sitter-css
+          p.tree-sitter-vim
+          p.tree-sitter-bash
+          p.tree-sitter-lua
+          p.tree-sitter-python
+          p.tree-sitter-json
         ]));
         type = "lua";
         config = builtins.readFile ./plugins/treesitter.lua;

@@ -22,5 +22,6 @@
     htop
     coreutils
     direnv
+    nixpkgs-fmt
   ];
 }

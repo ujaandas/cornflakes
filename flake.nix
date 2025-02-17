@@ -16,34 +16,38 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Age encrypted secrets
+    agenix.url = "github:ryantm/agenix";
   };
 
   # Destructure inputs for readability
-  outputs = inputs@{ self, home-manager, nix-darwin, nixpkgs }: 
-  {
+  outputs = inputs@{ self, home-manager, nix-darwin, agenix, nixpkgs }: {
     darwinConfigurations = {
-      ooj = let 
-        username = "ooj";
-        homeDirectory = "/Users/ooj";
-        pkgs = nixpkgs;
-        specialArgs = { inherit username homeDirectory; };
-      in
-      nix-darwin.lib.darwinSystem {
-        inherit specialArgs;
-        modules = [
-          ./users
-          ./hosts/macbook.nix
-          home-manager.darwinModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = inputs // specialArgs;
-              users.${username} = import ./users/${username}/home.nix;
-            };
-          }
-        ];
-      };
+      ooj =
+        let
+          username = "ooj";
+          homeDirectory = "/Users/ooj";
+          pkgs = nixpkgs;
+          specialArgs = { inherit username homeDirectory; };
+        in
+        nix-darwin.lib.darwinSystem {
+          inherit specialArgs;
+          modules = [
+            ./users
+            ./hosts/macbook.nix
+            agenix.nixosModules.default
+            home-manager.darwinModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = inputs // specialArgs;
+                users.${username} = import ./users/${username}/home.nix;
+              };
+            }
+          ];
+        };
     };
   };
 }
