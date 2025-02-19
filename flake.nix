@@ -28,14 +28,13 @@
         let
           username = "ooj";
           homeDirectory = "/Users/ooj";
-          pkgs = nixpkgs;
-          specialArgs = { inherit username homeDirectory; };
+          specialArgs = { inherit username homeDirectory inputs; };
         in
         nix-darwin.lib.darwinSystem {
           inherit specialArgs;
           modules = [
             ./users
-            ./hosts/macbook.nix
+            ./hosts/macbook
             agenix.nixosModules.default
             home-manager.darwinModules.home-manager
             {

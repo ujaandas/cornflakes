@@ -1,9 +1,5 @@
 { pkgs, ... }:
 {
-  imports = [
-    ./common.nix
-  ];
-
   # Set Git commit hash for darwin-version.
   system.configurationRevision = null;
 

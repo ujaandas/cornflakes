@@ -1,9 +1,9 @@
-{ pkgs, ... }: 
+{ pkgs, inputs, ... }:
 {
   services.nix-daemon.enable = true;
   nix.settings.experimental-features = "nix-command flakes";
   system.stateVersion = 5;
-  
+
   # Useful CLI apps, nothing heavy here
   environment.systemPackages = with pkgs; [
     tree
@@ -21,7 +21,10 @@
     neovim
     htop
     coreutils
+    nmap
     direnv
     nixpkgs-fmt
+    devenv
+    inputs.agenix.packages."${system}".default
   ];
 }
