@@ -3,6 +3,10 @@
   # Set Git commit hash for darwin-version.
   system.configurationRevision = null;
 
+  nix.settings = {
+    trusted-users = [ "ooj" ]; # root is added by default
+  };
+
   # The platform the configuration will be used on.
   nixpkgs.hostPlatform = "aarch64-darwin";
 
