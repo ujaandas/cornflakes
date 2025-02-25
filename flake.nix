@@ -22,7 +22,7 @@
   };
 
   # Destructure inputs for readability
-  outputs = { self, nixpkgs, nix-darwin, home-manager, agenix }: {
+  outputs = inputs@{ self, nixpkgs, nix-darwin, home-manager, agenix }: {
     darwinConfigurations =
       let
         users = [ "ooj" "alice" "bob" ];
@@ -46,7 +46,7 @@
             users
           );
 
-        createSystemConfig = { name, value }: inputs:
+        createSystemConfig = value: inputs:
           nix-darwin.lib.darwinSystem {
             specialArgs = { inherit inputs; username = value.username; };
             modules = [
@@ -57,6 +57,6 @@
             ];
           };
       in
-      builtins.mapAttrs (name: value: createSystemConfig { name = name; value = value; } { nixpkgs = nixpkgs; nix-darwin = nix-darwin; home-manager = home-manager; agenix = agenix; }) combinations;
+      builtins.mapAttrs (_: value: createSystemConfig value inputs) combinations;
   };
 }
