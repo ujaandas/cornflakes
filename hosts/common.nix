@@ -27,6 +27,5 @@
     direnv
     nixpkgs-fmt
     devenv
-    inputs.agenix.packages."${system}".default
   ];
 }

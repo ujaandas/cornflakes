@@ -22,31 +22,41 @@
   };
 
   # Destructure inputs for readability
-  outputs = inputs@{ self, home-manager, nix-darwin, agenix, nixpkgs }: {
-    darwinConfigurations = {
-      ooj =
-        let
-          username = "ooj";
-          homeDirectory = "/Users/ooj";
-          specialArgs = { inherit username homeDirectory inputs; };
-        in
-        nix-darwin.lib.darwinSystem {
-          inherit specialArgs;
-          modules = [
-            ./users
-            ./hosts/macbook
-            agenix.nixosModules.default
-            home-manager.darwinModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                extraSpecialArgs = inputs // specialArgs;
-                users.${username} = import ./users/${username}/home.nix;
-              };
-            }
-          ];
+  outputs = { self, nixpkgs, nix-darwin, home-manager, agenix }: {
+    darwinConfigurations =
+      let
+        users = [ "ooj" "alice" "bob" ];
+        systems = [ "macbook" "imac" "mac-mini" ];
+
+        generateCombination = user: system: {
+          name = "${user}-${system}";
+          value = {
+            username = user;
+            system = system;
+          };
         };
-    };
+
+        combinations = builtins.listToAttrs
+          (builtins.concatMap
+            (user:
+              builtins.map
+                (system: generateCombination user system)
+                systems
+            )
+            users
+          );
+
+        createSystemConfig = { name, value }: inputs:
+          nix-darwin.lib.darwinSystem {
+            specialArgs = { inherit inputs; username = value.username; };
+            modules = [
+              ./hosts/${value.system}
+              ./users/${value.username}
+              agenix.nixosModules.default
+              home-manager.darwinModules.home-manager
+            ];
+          };
+      in
+      builtins.mapAttrs (name: value: createSystemConfig { name = name; value = value; } { nixpkgs = nixpkgs; nix-darwin = nix-darwin; home-manager = home-manager; agenix = agenix; }) combinations;
   };
 }

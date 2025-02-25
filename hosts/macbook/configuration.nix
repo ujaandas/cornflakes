@@ -17,14 +17,19 @@
   # Use homebrew ONLY to install GUI apps
   homebrew = {
     enable = true;
-    brews = [ ]; # This should be EMPTY! All GUI apps are casks
+    brews = [
+      "mongodb-community@8.0"
+    ]; # This should be EMPTY! All GUI apps are casks
     casks = [
       # "firefox"
       # "google-chrome"
       "wezterm"
+      "tailscale"
       # "visual-studio-code"
     ];
-    taps = [ ];
+    taps = [
+      "mongodb/brew"
+    ];
     onActivation.cleanup = "zap";
   };
 
