@@ -29,5 +29,6 @@
     devenv
     lua-language-server
     nil
+    jq
   ];
 }
