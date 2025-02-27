@@ -23,10 +23,13 @@
 
   # Destructure inputs for readability
   outputs = inputs@{ self, nixpkgs, nix-darwin, home-manager, agenix }: {
+    templates = import ./templates;
     darwinConfigurations =
       let
         users = [ "ooj" "alice" "bob" ];
         systems = [ "macbook" "imac" "mac-mini" ];
+
+        # TODO: add mkUser and mkSystem builders
 
         generateCombination = user: system: {
           name = "${user}-${system}";

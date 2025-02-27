@@ -27,5 +27,7 @@
     direnv
     nixpkgs-fmt
     devenv
+    lua-language-server
+    nil
   ];
 }

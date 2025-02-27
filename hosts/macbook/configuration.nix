@@ -24,7 +24,7 @@
       # "firefox"
       # "google-chrome"
       "wezterm"
-      "tailscale"
+      "tailscale" # since we're on a mac, just use SSO to auth, dont bother with key/secret
       # "visual-studio-code"
     ];
     taps = [

@@ -8,26 +8,21 @@
     vimAlias = true;
     vimdiffAlias = true;
     plugins = with pkgs.vimPlugins; [
-      # no config
-      telescope-fzf-native-nvim
-      lualine-nvim
       nvim-web-devicons
-      cmp-nvim-lsp
-
-      # vimscript one-liner config
-
-      # lua one-liner config
-
-      # lua file config
       {
-        plugin = nvim-lspconfig;
+        plugin = snacks-nvim;
         type = "lua";
-        config = builtins.readFile ./plugins/lsp.lua;
+        config = builtins.readFile ./plugins/snacks.lua;
       }
       {
-        plugin = nvim-cmp;
+        plugin = which-key-nvim;
         type = "lua";
-        config = builtins.readFile ./plugins/cmp.lua;
+        config = builtins.readFile ./plugins/wk.lua;
+      }
+      {
+        plugin = lualine-nvim;
+        type = "lua";
+        config = builtins.readFile ./plugins/lualine.lua;
       }
       {
         plugin = telescope-nvim;
@@ -37,22 +32,30 @@
       {
         plugin = (nvim-treesitter.withPlugins (p: [
           p.tree-sitter-nix
-          p.tree-sitter-c
-          p.tree-sitter-cpp
-          p.tree-sitter-java
-          p.tree-sitter-javascript
-          p.tree-sitter-html
-          p.tree-sitter-css
-          p.tree-sitter-vim
-          p.tree-sitter-bash
           p.tree-sitter-lua
-          p.tree-sitter-python
-          p.tree-sitter-json
         ]));
         type = "lua";
         config = builtins.readFile ./plugins/treesitter.lua;
       }
+      {
+        plugin = nvim-cmp;
+        type = "lua";
+        config = builtins.readFile ./plugins/cmp.lua;
+      }
+      {
+        plugin = nvim-lspconfig;
+        type = "lua";
+        config = builtins.readFile ./plugins/lsp.lua;
+      }
+      {
+        plugin = nvim-tree-lua;
+        type = "lua";
+        config = builtins.readFile ./plugins/tree.lua;
+      }
     ];
-    extraLuaConfig = builtins.readFile ./init.lua;
+    extraLuaConfig = ''
+      	${builtins.readFile ./config/remap.lua}
+      	${builtins.readFile ./config/config.lua}
+    '';
   };
 }
